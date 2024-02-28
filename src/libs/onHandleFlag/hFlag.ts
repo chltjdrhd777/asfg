@@ -1,9 +1,10 @@
-import readline from 'readline';
-
 import { guideText } from '../../constants/guideText';
 
 export const hFlag = () => {
-  console.log(guideText.help);
+  const argvs = process.argv.slice(2);
 
-  return process.exit();
+  if (argvs.includes('-h') || argvs.includes('-help')) {
+    console.log(guideText.help);
+    process.exit();
+  }
 };

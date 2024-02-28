@@ -1,16 +1,17 @@
 import readline from 'readline';
 import { guideText } from '../constants/guideText';
+import { Flag } from '../types';
 
-interface GetCommandsParams {
+export interface GetCommandsParams {
   input: string;
   rl?: readline.Interface;
 }
 
-export function getCommands({ input = '', rl }: GetCommandsParams) {
+export const getCommands = ({ input = '', rl }: GetCommandsParams) => {
   const split = input.split(' ');
 
   const folderName = split.filter((t) => !t.startsWith('-'))[0];
-  const flag = split.find((t) => t.startsWith('-'));
+  const flag = split.find((t) => t.startsWith('-')) as Flag | undefined;
 
   if (!folderName) {
     console.log(guideText.noFolderName);
@@ -21,4 +22,4 @@ export function getCommands({ input = '', rl }: GetCommandsParams) {
     folderName,
     flag,
   };
-}
+};

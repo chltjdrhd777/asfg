@@ -1,0 +1,2 @@
+declare const noFolderName = "\n\uC774\uB984\uC744 \uC785\uB825\uD558\uC9C0 \uC54A\uC73C\uC168\uC2B5\uB2C8\uB2E4. \uB2E4\uC2DC \uC2DC\uB3C4\uD574\uC8FC\uC138\uC694\n";
+export { noFolderName };
