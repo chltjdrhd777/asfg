@@ -8,3 +8,7 @@ const onHelpFlag = () => {
 exports.onHelpFlag = onHelpFlag;
 const onHandleFlag = ({ folderName, flag }) => { };
 exports.onHandleFlag = onHandleFlag;
+// export interface OnCreatePageStructureParmas extends GetCommandsReturnType {}
+// export const onCreatePageStructure = ({ folderName, flag }: OnCreatePageStructureParmas) => {
+//   console.log('create 작동해?');
+// };

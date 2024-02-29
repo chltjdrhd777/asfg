@@ -2,6 +2,8 @@ import readline from 'readline';
 
 import { utils } from './utils';
 import { libs } from './libs';
+import { ASFGConfig } from './types';
+import { constants } from './constants';
 
 //todo
 // config 파일에도 반응하도록
@@ -15,6 +17,8 @@ export function generateNextFolderStructure() {
   // 그 이외의 로직 처리 시작
   utils.consoleIntro();
 
+  return;
+
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,
@@ -22,11 +26,13 @@ export function generateNextFolderStructure() {
 
   rl.question('folder name : ', (input) => {
     const commands = utils.getCommands({ input, rl });
+    const ASFGConfig = undefined;
+    const config: ASFGConfig = ASFGConfig ?? constants.defaultASFGConfig; //todo config 파일 읽어오도록 한다.
 
     if (commands.flag) {
       libs.onHandleFlag(commands);
     } else {
-      libs.onCreatePageStructure(commands);
+      libs.onHandlePageComponent({ commands, config });
     }
 
     rl.close();

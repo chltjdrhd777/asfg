@@ -7,7 +7,7 @@ export interface GetCommandsParams {
   rl?: readline.Interface;
 }
 
-export const getCommands = ({ input = '', rl }: GetCommandsParams) => {
+export const getCommands = ({ input = '' }: GetCommandsParams) => {
   const split = input.split(' ');
 
   const folderName = split.filter((t) => !t.startsWith('-'))[0];

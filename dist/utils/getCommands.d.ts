@@ -5,7 +5,7 @@ export interface GetCommandsParams {
     input: string;
     rl?: readline.Interface;
 }
-export declare const getCommands: ({ input, rl }: GetCommandsParams) => {
+export declare const getCommands: ({ input }: GetCommandsParams) => {
     folderName: string;
     flag: Flag | undefined;
 };

@@ -8,6 +8,7 @@ exports.generateNextFolderStructure = void 0;
 const readline_1 = __importDefault(require("readline"));
 const utils_1 = require("./utils");
 const libs_1 = require("./libs");
+const constants_1 = require("./constants");
 //todo
 // config 파일에도 반응하도록
 // config에 들어갈 정보
@@ -17,17 +18,20 @@ function generateNextFolderStructure() {
     libs_1.libs.onHelpFlag();
     // 그 이외의 로직 처리 시작
     utils_1.utils.consoleIntro();
+    return;
     const rl = readline_1.default.createInterface({
         input: process.stdin,
         output: process.stdout,
     });
     rl.question('folder name : ', (input) => {
         const commands = utils_1.utils.getCommands({ input, rl });
+        const ASFGConfig = undefined;
+        const config = ASFGConfig !== null && ASFGConfig !== void 0 ? ASFGConfig : constants_1.constants.defaultASFGConfig; //todo config 파일 읽어오도록 한다.
         if (commands.flag) {
             libs_1.libs.onHandleFlag(commands);
         }
         else {
-            libs_1.libs.onCreatePageStructure(commands);
+            libs_1.libs.onHandlePageComponent({ commands, config });
         }
         rl.close();
     });

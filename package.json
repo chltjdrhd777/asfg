@@ -1,24 +1,29 @@
 {
-  "name": "nfsg",
+  "name": "asfg",
   "version": "1.0.0",
-  "description": "Nextjs Folder Structure Generator",
+  "description": "Auto Folder Structure Generator",
   "main": "./src/index.ts",
   "scripts": {
     "build": "node scripts/build.js",
     "prepublishOnly": "npm run build"
   },
   "bin": {
-    "nfsg": "./dist/index.js"
+    "asfg": "./dist/index.js"
   },
   "keywords": [
     "demo",
     "typescript",
-    "npm"
+    "npm",
+    "nextjs",
+    "app routing"
   ],
-  "author": "",
+  "author": "devAnderson",
   "license": "ISC",
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "mkdirp": "^3.0.1"
   }
 }

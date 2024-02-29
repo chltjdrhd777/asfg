@@ -1,8 +1,8 @@
 import { onHelpFlag, onHandleFlag } from './onHandleFlag';
-import { onCreatePageStructure } from './onCreatePageStructure';
+import { onHandlePageComponent } from './onHandlePageComponent';
 
 export const libs = {
   onHelpFlag,
   onHandleFlag,
-  onCreatePageStructure,
+  onHandlePageComponent,
 };
