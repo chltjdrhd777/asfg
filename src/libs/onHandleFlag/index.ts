@@ -1,6 +1,6 @@
 import { DefaultCommonParams } from '../../types';
 import { hFlag } from './hFlag';
-import { nFlag } from './nFlag';
+import { netFlag } from './netFlag';
 
 export interface OnHanldeFlagParams extends DefaultCommonParams {}
 
@@ -13,5 +13,5 @@ export const onHandleFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
 
   //handle flag cases
   if (flag === '-h' || flag === '-help') hFlag();
-  if (flag === '-n') nFlag(onHanldeFlagParams);
+  if (flag === '-net') netFlag(onHanldeFlagParams);
 };
