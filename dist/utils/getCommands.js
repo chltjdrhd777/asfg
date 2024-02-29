@@ -6,7 +6,7 @@ const getCommands = ({ input = '' }) => {
     const split = input.split(' ');
     const folderName = split.filter((t) => !t.startsWith('-'))[0];
     const flag = split.find((t) => t.startsWith('-'));
-    if (!folderName) {
+    if (!folderName && !flag) {
         console.log(guideText_1.guideText.noFolderName);
         return process.exit();
     }

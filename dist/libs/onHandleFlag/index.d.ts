@@ -1,5 +1,5 @@
-import { GetCommandsReturnType } from '../../types';
-export interface OnHanldeFlagParams extends GetCommandsReturnType {
+import { DefaultCommonParams } from '../../types';
+export interface OnHanldeFlagParams extends DefaultCommonParams {
 }
 export declare const onHelpFlag: () => void;
-export declare const onHandleFlag: ({ folderName, flag }: OnHanldeFlagParams) => void;
+export declare const onHandleFlag: (onHanldeFlagParams: OnHanldeFlagParams) => void;

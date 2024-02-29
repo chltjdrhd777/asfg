@@ -1,29 +1,20 @@
-import { ASFGConfig, GetCommandsReturnType } from '../../types';
+import { ASFGConfig, DefaultCommonParams, GetCommandsReturnType } from '../../types';
 import { utils } from '../../utils';
 import { generateComponent } from './generateComponent';
 import { generateContextState } from './generateContextState';
 import { generateCreatecontext } from './generateCreatecontext';
 import { generatePage } from './generatePage';
 
-export interface OnHandlePageComponentParams {
-  commands: GetCommandsReturnType;
-  config: ASFGConfig;
-}
-
-export interface CommonGenerateParams {
+export interface OnHandlePageComponentParams extends DefaultCommonParams {}
+export interface CommonGenerateParams extends OnHandlePageComponentParams {
   pageName: string;
-  rootDir: string;
-  config: ASFGConfig;
 }
 
 export const onHandlePageComponent = (onHandlePageComponentParams: OnHandlePageComponentParams) => {
   const pageName = utils.getNaming(onHandlePageComponentParams.commands.folderName ?? '');
-  const rootDir = utils.getRootDirectory() ?? '';
-  const config = onHandlePageComponentParams.config;
-  const commonGenerateParams = {
+  const commonGenerateParams: CommonGenerateParams = {
     pageName,
-    rootDir,
-    config,
+    ...onHandlePageComponentParams,
   };
 
   // 0. createContext 훅 생성

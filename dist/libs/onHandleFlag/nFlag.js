@@ -23,18 +23,27 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateCreatecontext = void 0;
+exports.nFlag = void 0;
 const path = __importStar(require("path"));
 const constants_1 = require("../../constants");
 const generateFolder_1 = require("../generateFolder");
 const generateFile_1 = require("../generateFile");
-const generateCreatecontext = ({ rootDir }) => {
-    //1. contexts 폴더 생성
-    const contextsFolderPath = path.join(rootDir, 'src/contexts');
-    (0, generateFolder_1.generateFolder)(contextsFolderPath);
-    //2. create context 파일 생성.
-    const createContextFilePath = `${contextsFolderPath}/createContext.tsx`;
-    const createContextContent = constants_1.constants.contextStateContent.getBaseCreateContext();
-    (0, generateFile_1.generateFile)(createContextFilePath, createContextContent);
+const nFlag = (onHanldeFlagParams) => {
+    const { rootDir } = onHanldeFlagParams;
+    const middlePath = 'src/network';
+    //1. network 폴더 생성
+    const networkFolderPath = path.join(rootDir, middlePath);
+    (0, generateFolder_1.generateFolder)(networkFolderPath);
+    //2. apiClient 폴더 생성
+    const apiClientFolderPath = path.join(rootDir, middlePath, 'apiClient');
+    (0, generateFolder_1.generateFolder)(apiClientFolderPath);
+    //4. baseConfig.ts 파일 생성
+    const baseConfigFilePath = `${apiClientFolderPath}/baseConfig.ts`;
+    const baseConfigContent = constants_1.constants.networkContent.baseConfigContent;
+    (0, generateFile_1.generateFile)(baseConfigFilePath, baseConfigContent);
+    //4. index.ts(instance 초기화) 생성
+    const clientIndexFilePath = `${apiClientFolderPath}/index.ts`;
+    const clientIndexContent = constants_1.constants.networkContent.clientIndexContent;
+    (0, generateFile_1.generateFile)(clientIndexFilePath, clientIndexContent);
 };
-exports.generateCreatecontext = generateCreatecontext;
+exports.nFlag = nFlag;

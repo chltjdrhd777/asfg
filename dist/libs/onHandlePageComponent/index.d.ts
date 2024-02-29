@@ -1,11 +1,7 @@
-import { ASFGConfig, GetCommandsReturnType } from '../../types';
-export interface OnHandlePageComponentParams {
-    commands: GetCommandsReturnType;
-    config: ASFGConfig;
+import { DefaultCommonParams } from '../../types';
+export interface OnHandlePageComponentParams extends DefaultCommonParams {
 }
-export interface CommonGenerateParams {
+export interface CommonGenerateParams extends OnHandlePageComponentParams {
     pageName: string;
-    rootDir: string;
-    config: ASFGConfig;
 }
 export declare const onHandlePageComponent: (onHandlePageComponentParams: OnHandlePageComponentParams) => void;

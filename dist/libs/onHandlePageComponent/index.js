@@ -7,15 +7,9 @@ const generateContextState_1 = require("./generateContextState");
 const generateCreatecontext_1 = require("./generateCreatecontext");
 const generatePage_1 = require("./generatePage");
 const onHandlePageComponent = (onHandlePageComponentParams) => {
-    var _a, _b;
+    var _a;
     const pageName = utils_1.utils.getNaming((_a = onHandlePageComponentParams.commands.folderName) !== null && _a !== void 0 ? _a : '');
-    const rootDir = (_b = utils_1.utils.getRootDirectory()) !== null && _b !== void 0 ? _b : '';
-    const config = onHandlePageComponentParams.config;
-    const commonGenerateParams = {
-        pageName,
-        rootDir,
-        config,
-    };
+    const commonGenerateParams = Object.assign({ pageName }, onHandlePageComponentParams);
     // 0. createContext 훅 생성
     (0, generateCreatecontext_1.generateCreatecontext)(commonGenerateParams);
     // 1. contextState 생성

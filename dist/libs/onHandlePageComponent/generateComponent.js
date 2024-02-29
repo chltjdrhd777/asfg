@@ -24,31 +24,24 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.generateComponent = void 0;
-const fs = __importStar(require("fs"));
 const path = __importStar(require("path"));
-const mkdirp_1 = require("mkdirp");
 const constants_1 = require("../../constants");
+const generateFolder_1 = require("../generateFolder");
+const generateFile_1 = require("../generateFile");
 const generateComponent = ({ pageName, rootDir, config }) => {
+    //1. component 폴더 생성
     const componentFolderPath = path.join(rootDir, 'src/components', pageName); // todo config 통해서 변동 가능하도록.
+    (0, generateFolder_1.generateFolder)(componentFolderPath);
+    //2. component 파일 생성
     const componentFileName = 'index'; // todo config 통해서 변동 가능하도록.
     const componentFilePath = `${componentFolderPath}/${componentFileName}.tsx`;
-    //1. generate component
-    if (!fs.existsSync(componentFolderPath)) {
-        mkdirp_1.mkdirp.sync(componentFolderPath);
-    }
-    if (!fs.existsSync(componentFilePath)) {
-        const content = constants_1.constants.componentContent.getBaseComponentContent(pageName, config.alias);
-        fs.writeFileSync(componentFilePath, content);
-    }
-    //2. generate hooks folder
+    const componentContent = constants_1.constants.componentContent.getBaseComponentContent(pageName, config.alias);
+    (0, generateFile_1.generateFile)(componentFilePath, componentContent);
+    //3. hooks 폴더 생성
     const hooksFolderPath = `${componentFolderPath}/hooks`;
-    if (!fs.existsSync(hooksFolderPath)) {
-        mkdirp_1.mkdirp.sync(hooksFolderPath);
-    }
-    //2. generate styles
+    (0, generateFolder_1.generateFolder)(hooksFolderPath);
+    //4. styles 폴더 생성
     const styleFilePath = `${componentFolderPath}/${componentFileName}.styles.ts`;
-    if (!fs.existsSync(styleFilePath)) {
-        fs.writeFileSync(styleFilePath, '');
-    }
+    (0, generateFolder_1.generateFolder)(styleFilePath);
 };
 exports.generateComponent = generateComponent;

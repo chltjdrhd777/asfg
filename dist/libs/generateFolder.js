@@ -23,18 +23,13 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.generateCreatecontext = void 0;
-const path = __importStar(require("path"));
-const constants_1 = require("../../constants");
-const generateFolder_1 = require("../generateFolder");
-const generateFile_1 = require("../generateFile");
-const generateCreatecontext = ({ rootDir }) => {
-    //1. contexts 폴더 생성
-    const contextsFolderPath = path.join(rootDir, 'src/contexts');
-    (0, generateFolder_1.generateFolder)(contextsFolderPath);
-    //2. create context 파일 생성.
-    const createContextFilePath = `${contextsFolderPath}/createContext.tsx`;
-    const createContextContent = constants_1.constants.contextStateContent.getBaseCreateContext();
-    (0, generateFile_1.generateFile)(createContextFilePath, createContextContent);
+exports.generateFolder = void 0;
+const fs = __importStar(require("fs"));
+const mkdirp_1 = require("mkdirp");
+const generateFolder = (path) => {
+    //경로에 폴더가 없을 경우에 폴더 생성
+    if (!fs.existsSync(path)) {
+        mkdirp_1.mkdirp.sync(path);
+    }
 };
-exports.generateCreatecontext = generateCreatecontext;
+exports.generateFolder = generateFolder;

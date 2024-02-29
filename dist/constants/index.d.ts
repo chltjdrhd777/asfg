@@ -16,4 +16,8 @@ export declare const constants: {
         getBasePageContent: (pageName: string) => string;
     };
     defaultASFGConfig: import("../types").ASFGConfig;
+    networkContent: {
+        baseConfigContent: string;
+        clientIndexContent: string;
+    };
 };

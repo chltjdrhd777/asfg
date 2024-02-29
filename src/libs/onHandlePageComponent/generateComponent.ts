@@ -1,34 +1,27 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { mkdirp } from 'mkdirp';
 
 import { constants } from '../../constants';
 import { CommonGenerateParams } from '.';
+import { generateFolder } from '../generateFolder';
+import { generateFile } from '../generateFile';
 
 export const generateComponent = ({ pageName, rootDir, config }: CommonGenerateParams) => {
+  //1. component 폴더 생성
   const componentFolderPath = path.join(rootDir, 'src/components', pageName); // todo config 통해서 변동 가능하도록.
+  generateFolder(componentFolderPath);
+
+  //2. component 파일 생성
   const componentFileName = 'index'; // todo config 통해서 변동 가능하도록.
   const componentFilePath = `${componentFolderPath}/${componentFileName}.tsx`;
+  const componentContent = constants.componentContent.getBaseComponentContent(pageName, config.alias!);
+  generateFile(componentFilePath, componentContent);
 
-  //1. generate component
-  if (!fs.existsSync(componentFolderPath)) {
-    mkdirp.sync(componentFolderPath);
-  }
-
-  if (!fs.existsSync(componentFilePath)) {
-    const content = constants.componentContent.getBaseComponentContent(pageName, config.alias!);
-    fs.writeFileSync(componentFilePath, content);
-  }
-
-  //2. generate hooks folder
+  //3. hooks 폴더 생성
   const hooksFolderPath = `${componentFolderPath}/hooks`;
-  if (!fs.existsSync(hooksFolderPath)) {
-    mkdirp.sync(hooksFolderPath);
-  }
+  generateFolder(hooksFolderPath);
 
-  //2. generate styles
+  //4. styles 폴더 생성
   const styleFilePath = `${componentFolderPath}/${componentFileName}.styles.ts`;
-  if (!fs.existsSync(styleFilePath)) {
-    fs.writeFileSync(styleFilePath, '');
-  }
+  generateFolder(styleFilePath);
 };
