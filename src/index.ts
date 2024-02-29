@@ -2,7 +2,7 @@ import readline from 'readline';
 
 import { utils } from './utils';
 import { libs } from './libs';
-import { ASFGConfig } from './types';
+import { ASFGConfig, DefaultCommonParams } from './types';
 import { constants } from './constants';
 
 export function generateNextFolderStructure() {
@@ -19,13 +19,22 @@ export function generateNextFolderStructure() {
 
   rl.question('folder name : ', (input) => {
     const commands = utils.getCommands({ input, rl });
-    const ASFGConfig = undefined;
+
+    const ASFGConfig = undefined; //todo config 파일 읽어오도록 수정
     const config: ASFGConfig = ASFGConfig ?? constants.defaultASFGConfig; //todo config 파일 읽어오도록 한다.
 
+    const rootDir = utils.getRootDirectory() ?? process.cwd();
+
+    const defaultCommonParams: DefaultCommonParams = {
+      commands,
+      config,
+      rootDir,
+    };
+
     if (commands.flag) {
-      libs.onHandleFlag(commands);
+      libs.onHandleFlag(defaultCommonParams);
     } else {
-      libs.onHandlePageComponent({ commands, config });
+      libs.onHandlePageComponent(defaultCommonParams);
     }
 
     rl.close();

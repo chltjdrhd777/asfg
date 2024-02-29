@@ -1,1 +1,0 @@
-export declare const introduction = "\n\uD83D\uDE0A Nextjs \uD3F4\uB354 \uAD6C\uC870\uC758 \uC774\uB984\uC744 \uC785\uB825\uD574\uC8FC\uC138\uC694 (app routing \uAE30\uC900)\n\nex) zone\nex) Zone\nex) zone-floor\nex) zone_floor\n";

@@ -13,7 +13,7 @@ export const getCommands = ({ input = '' }: GetCommandsParams) => {
   const folderName = split.filter((t) => !t.startsWith('-'))[0];
   const flag = split.find((t) => t.startsWith('-')) as Flag | undefined;
 
-  if (!folderName) {
+  if (!folderName && !flag) {
     console.log(guideText.noFolderName);
     return process.exit();
   }
