@@ -9,10 +9,6 @@ const readline_1 = __importDefault(require("readline"));
 const utils_1 = require("./utils");
 const libs_1 = require("./libs");
 const constants_1 = require("./constants");
-//todo
-// config 파일에도 반응하도록
-// config에 들어갈 정보
-// 1. path alias 유무
 function generateNextFolderStructure() {
     // 초기 -h나 -help 입력 시, help text 콘솔에 표출
     libs_1.libs.onHelpFlag();

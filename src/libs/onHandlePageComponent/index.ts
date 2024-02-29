@@ -2,6 +2,7 @@ import { ASFGConfig, GetCommandsReturnType } from '../../types';
 import { utils } from '../../utils';
 import { generateComponent } from './generateComponent';
 import { generateContextState } from './generateContextState';
+import { generateCreatecontext } from './generateCreatecontext';
 import { generatePage } from './generatePage';
 
 export interface OnHandlePageComponentParams {
@@ -24,6 +25,9 @@ export const onHandlePageComponent = (onHandlePageComponentParams: OnHandlePageC
     rootDir,
     config,
   };
+
+  // 0. createContext 훅 생성
+  generateCreatecontext(commonGenerateParams);
 
   // 1. contextState 생성
   generateContextState(commonGenerateParams);
