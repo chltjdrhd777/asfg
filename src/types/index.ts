@@ -1,6 +1,6 @@
 import { getCommands } from '../utils/getCommands';
 
-export type Flag = '-h' | '-help' | '-n';
+export type Flag = '-h' | '-help' | '-net';
 export type GetCommandsReturnType = ReturnType<typeof getCommands>;
 
 export interface ASFGConfig {
