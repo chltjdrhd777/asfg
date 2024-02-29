@@ -4,6 +4,7 @@ export declare const constants: {
     };
     contextStateContent: {
         getBaseContextStateContent: (pageName: string) => string;
+        getBaseCreateContext: () => string;
     };
     guideText: {
         help: string;

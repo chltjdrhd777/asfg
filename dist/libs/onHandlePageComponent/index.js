@@ -4,6 +4,7 @@ exports.onHandlePageComponent = void 0;
 const utils_1 = require("../../utils");
 const generateComponent_1 = require("./generateComponent");
 const generateContextState_1 = require("./generateContextState");
+const generateCreatecontext_1 = require("./generateCreatecontext");
 const generatePage_1 = require("./generatePage");
 const onHandlePageComponent = (onHandlePageComponentParams) => {
     var _a, _b;
@@ -15,6 +16,8 @@ const onHandlePageComponent = (onHandlePageComponentParams) => {
         rootDir,
         config,
     };
+    // 0. createContext 훅 생성
+    (0, generateCreatecontext_1.generateCreatecontext)(commonGenerateParams);
     // 1. contextState 생성
     (0, generateContextState_1.generateContextState)(commonGenerateParams);
     // 2. component 생성

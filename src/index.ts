@@ -5,11 +5,6 @@ import { libs } from './libs';
 import { ASFGConfig } from './types';
 import { constants } from './constants';
 
-//todo
-// config 파일에도 반응하도록
-// config에 들어갈 정보
-// 1. path alias 유무
-
 export function generateNextFolderStructure() {
   // 초기 -h나 -help 입력 시, help text 콘솔에 표출
   libs.onHelpFlag();
