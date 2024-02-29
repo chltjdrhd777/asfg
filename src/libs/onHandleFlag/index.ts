@@ -1,16 +1,17 @@
-import { GetCommandsReturnType } from '../../types';
+import { DefaultCommonParams } from '../../types';
 import { hFlag } from './hFlag';
+import { nFlag } from './nFlag';
 
-export interface OnHanldeFlagParams extends GetCommandsReturnType {}
+export interface OnHanldeFlagParams extends DefaultCommonParams {}
 
 export const onHelpFlag = () => {
   hFlag();
 };
 
-export const onHandleFlag = ({ folderName, flag }: OnHanldeFlagParams) => {};
+export const onHandleFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
+  const flag = onHanldeFlagParams.commands.flag;
 
-// export interface OnCreatePageStructureParmas extends GetCommandsReturnType {}
-
-// export const onCreatePageStructure = ({ folderName, flag }: OnCreatePageStructureParmas) => {
-//   console.log('create 작동해?');
-// };
+  //handle flag cases
+  if (flag === '-h' || flag === '-help') hFlag();
+  if (flag === '-n') nFlag(onHanldeFlagParams);
+};

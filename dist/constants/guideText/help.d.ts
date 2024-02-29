@@ -1,1 +1,0 @@
-export declare const help = "\n| Command    | Description                 |\n|------------|-----------------------------|\n| -h         | Display help information    |\n| list       | List items                  |\n| create     | Create a new item           |\n| delete     | Delete an existing item     |\n| update     | Update an existing item     |\n";
