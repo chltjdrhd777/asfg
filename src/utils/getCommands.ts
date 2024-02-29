@@ -10,16 +10,16 @@ export interface GetCommandsParams {
 export const getCommands = ({ input = '' }: GetCommandsParams) => {
   const split = input.split(' ');
 
-  const folderName = split.filter((t) => !t.startsWith('-'))[0];
+  const resourceName = split.filter((t) => !t.startsWith('-'))[0];
   const flag = split.find((t) => t.startsWith('-')) as Flag | undefined;
 
-  if (!folderName && !flag) {
-    console.log(guideText.noFolderName);
+  if (!resourceName && !flag) {
+    console.log(guideText.noResourceName);
     return process.exit();
   }
 
   return {
-    folderName,
+    resourceName,
     flag,
   };
 };

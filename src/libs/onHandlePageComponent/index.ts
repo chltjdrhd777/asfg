@@ -11,7 +11,7 @@ export interface CommonGenerateParams extends OnHandlePageComponentParams {
 }
 
 export const onHandlePageComponent = (onHandlePageComponentParams: OnHandlePageComponentParams) => {
-  const pageName = utils.getNaming(onHandlePageComponentParams.commands.folderName ?? '');
+  const pageName = utils.getNaming(onHandlePageComponentParams.commands.resourceName ?? '');
   const commonGenerateParams: CommonGenerateParams = {
     pageName,
     ...onHandlePageComponentParams,
