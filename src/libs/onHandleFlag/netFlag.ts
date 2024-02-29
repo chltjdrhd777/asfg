@@ -5,7 +5,7 @@ import { OnHanldeFlagParams } from '.';
 import { generateFolder } from '../generateFolder';
 import { generateFile } from '../generateFile';
 
-export const nFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
+export const netFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
   const { rootDir } = onHanldeFlagParams;
   const middlePath = 'src/network';
 
