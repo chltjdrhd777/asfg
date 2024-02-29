@@ -6,7 +6,7 @@ import { generateFolder } from '../generateFolder';
 import { generateFile } from '../generateFile';
 
 export const netFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
-  const { rootDir } = onHanldeFlagParams;
+  const { commands, rootDir } = onHanldeFlagParams;
   const middlePath = 'src/network';
 
   //1. network 폴더 생성
@@ -26,4 +26,6 @@ export const netFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
   const clientIndexFilePath = `${apiClientFolderPath}/index.ts`;
   const clientIndexContent = constants.networkContent.clientIndexContent;
   generateFile(clientIndexFilePath, clientIndexContent);
+
+  //5. default query hook 생성
 };

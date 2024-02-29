@@ -1,11 +1,11 @@
 import { help } from './help';
 import { aschiiTitle } from './aschiiTitle';
 import { introduction } from './introduction';
-import { noFolderName } from './warning';
+import { noResourceName } from './warning';
 
 export const guideText = {
   help,
   aschiiTitle,
   introduction,
-  noFolderName,
+  noResourceName,
 };
