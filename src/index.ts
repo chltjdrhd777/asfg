@@ -17,8 +17,6 @@ export function generateNextFolderStructure() {
   // 그 이외의 로직 처리 시작
   utils.consoleIntro();
 
-  return;
-
   const rl = readline.createInterface({
     input: process.stdin,
     output: process.stdout,

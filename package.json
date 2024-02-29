@@ -2,7 +2,7 @@
   "name": "asfg",
   "version": "1.0.0",
   "description": "Auto Folder Structure Generator",
-  "main": "./src/index.ts",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "node scripts/build.js",
     "prepublishOnly": "npm run build"
@@ -13,12 +13,20 @@
   "keywords": [
     "demo",
     "typescript",
+    "folder structure",
     "npm",
     "nextjs",
     "app routing"
   ],
-  "author": "devAnderson",
-  "license": "ISC",
+  "author": {
+    "name": "devAnderson",
+    "email": "chltjdrhd777@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chltjdrhd777/asfg"
+  },
+  "license": "MIT",
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"

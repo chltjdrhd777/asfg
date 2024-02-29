@@ -2,6 +2,8 @@
 <div align="center">Auto Structured Folder Generator</div>
 <br />
 
+<img src="https://raw.githubusercontent.com/chltjdrhd777/image-hosting/main/asfg.png" width="703px" height="305px" title="Github_Logo"/>
+
 ## ⭐ 제작 계기
 
 프로젝트를 진행 중에, Context API를 기반으로 하는 디자인 패턴을 공통 컨벤션으로 결정하였습니다. 하지만, 생각보다 컨벤션 절차가 존재가 많아서 Docs로 남겨두더라도 이를 따르면서 진행하기도 어렵고 인수인계 절차도 복잡하다는 생각을 하게 되었습니다. 때문에 일일이 문서를 통해 컨벤션을 확인하기 보다는 CLI 명령어로 자동적으로 구조를 생성해 주는 것이 간편하겠다고 판단하여 제작하게 되었습니다.
@@ -26,7 +28,7 @@
 > asfg
 ```
 
-## ⭐ Folder Structure
+## ⭐ Folder Structure (src 내부)
 
 <table>
   <thead>
