@@ -24,7 +24,7 @@
 `npm 설치 시`
 
 ```
-> npm i -D asfg
+> npm i -g asfg
 > asfg
 ```
 
