@@ -27,5 +27,5 @@ export const netFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
   const clientIndexContent = constants.networkContent.clientIndexContent;
   generateFile(clientIndexFilePath, clientIndexContent);
 
-  //5. default query hook 생성
+  //todo 5. default query hook 생성
 };
