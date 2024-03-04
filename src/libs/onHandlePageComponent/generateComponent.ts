@@ -21,7 +21,7 @@ export const generateComponent = ({ pageName, rootDir, config }: CommonGenerateP
   const hooksFolderPath = `${componentFolderPath}/hooks`;
   generateFolder(hooksFolderPath);
 
-  //4. styles 폴더 생성
+  //4. styles 파일 생성
   const styleFilePath = `${componentFolderPath}/${componentFileName}.styles.ts`;
-  generateFolder(styleFilePath);
+  generateFile(styleFilePath, '');
 };
