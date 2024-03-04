@@ -5,9 +5,9 @@ import { CommonGenerateParams } from '.';
 import { generateFolder } from '../generateFolder';
 import { generateFile } from '../generateFile';
 
-export const generatePage = ({ pageName, rootDir }: CommonGenerateParams) => {
+export const generatePage = ({ commands: { resourceName }, pageName, rootDir }: CommonGenerateParams) => {
   //1. page 폴더 생성
-  const pageFolderPath = path.join(rootDir, 'src/app', pageName); //todo 해당 부분은 config로 조절 가능하도록.
+  const pageFolderPath = path.join(rootDir, 'src/app', resourceName); //todo 해당 부분은 config로 조절 가능하도록.
   generateFolder(pageFolderPath);
 
   //2. page 파일 생성
