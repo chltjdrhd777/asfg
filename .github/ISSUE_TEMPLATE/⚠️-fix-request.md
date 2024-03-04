@@ -1,8 +1,8 @@
 ---
 name: "⚠️ fix request"
 about: Suggest fixiation
-title: ''
-labels: bug
+title: "⚠️ "
+labels: ''
 assignees: chltjdrhd777
 
 ---
