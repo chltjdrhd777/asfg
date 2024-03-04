@@ -2,7 +2,7 @@
 name: "⚠️ fix request"
 about: Suggest fixiation
 title: "⚠️ "
-labels: ''
+labels: fix
 assignees: chltjdrhd777
 
 ---
