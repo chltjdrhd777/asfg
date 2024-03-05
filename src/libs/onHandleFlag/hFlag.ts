@@ -4,7 +4,7 @@ export const hFlag = () => {
   const argvs = process.argv.slice(2);
 
   if (argvs.includes('-h') || argvs.includes('-help')) {
-    console.log(guideText.help);
+    console.table(guideText.helpTableStructure);
     process.exit();
   }
 };
