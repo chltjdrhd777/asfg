@@ -1,6 +1,7 @@
 export const getBaseComponentContent = (pageName: string, alias: string) => `'use client';
 
 import * as React from 'react';
+import * as S from './index.styles';
 
 import { createContext } from '${alias}/contexts/createContext';
 import use${pageName}ContextState from '${alias}/contexts/${pageName}/use${pageName}ContextState';
