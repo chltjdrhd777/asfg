@@ -50,7 +50,7 @@ jobs:
 
           # Create the issue and capture the issue number
           ISSUE_NUMBER=$(curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.GIT_TOKEN }}" \
             -d "{\"title\":\"$ISSUE_TITLE\",\"body\":\"$ISSUE_BODY\"}" \
             "https://api.github.com/repos/${{ github.repository }}/issues" | jq -r '.number')
 
@@ -67,6 +67,6 @@ jobs:
 
           # Create the pull request
           curl -X POST \
-            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -H "Authorization: token ${{ secrets.GIT_TOKEN }}" \
             -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"develop\",\"base\":\"main\"}" \
             "https://api.github.com/repos/${{ github.repository }}/pulls"
