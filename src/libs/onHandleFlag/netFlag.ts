@@ -1,31 +1,16 @@
-import * as path from 'path';
+import { CommonFlagHandlerParams, OnHanldeFlagParams } from '.';
+import { generateExampleAPI } from './utils/generateExampleAPI';
+import { generateNetwork } from './utils/generateNetwork';
 
-import { constants } from '../../constants';
-import { OnHanldeFlagParams } from '.';
-import { generateFolder } from '../generateFolder';
-import { generateFile } from '../generateFile';
+interface NetFlagParams extends CommonFlagHandlerParams {}
 
-export const netFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
-  const { commands, rootDir } = onHanldeFlagParams;
-  const middlePath = 'src/network';
+export const netFlag = (netFlagParams: NetFlagParams) => {
+  // 1. default network structure(axios 기반 client) 생성
+  generateNetwork(netFlagParams);
 
-  //1. network 폴더 생성
-  const networkFolderPath = path.join(rootDir, middlePath);
-  generateFolder(networkFolderPath);
+  // 2. example API hook(react-query 기반) 생성
+  const exampleFolderNameAndFileName = ['example', 'example'];
+  netFlagParams.commands.commandGroupWithoutFlag = exampleFolderNameAndFileName;
 
-  //2. apiClient 폴더 생성
-  const apiClientFolderPath = path.join(rootDir, middlePath, 'apiClient');
-  generateFolder(apiClientFolderPath);
-
-  //4. baseConfig.ts 파일 생성
-  const baseConfigFilePath = `${apiClientFolderPath}/baseConfig.ts`;
-  const baseConfigContent = constants.networkContent.baseConfigContent;
-  generateFile(baseConfigFilePath, baseConfigContent);
-
-  //4. index.ts(instance 초기화) 생성
-  const clientIndexFilePath = `${apiClientFolderPath}/index.ts`;
-  const clientIndexContent = constants.networkContent.clientIndexContent;
-  generateFile(clientIndexFilePath, clientIndexContent);
-
-  //todo 5. default query hook 생성
+  generateExampleAPI(netFlagParams);
 };

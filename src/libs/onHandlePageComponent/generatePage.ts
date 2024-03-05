@@ -11,7 +11,7 @@ export const generatePage = ({ commands: { resourceName }, pageName, rootDir }: 
   generateFolder(pageFolderPath);
 
   //2. page 파일 생성
-  const pageFilePath = `${pageFolderPath}/page.tsx`;
+  const pageFilePath = path.join(pageFolderPath, 'page.tsx');
   const pageContent = getBasePageContent(pageName);
   generateFile(pageFilePath, pageContent);
 };

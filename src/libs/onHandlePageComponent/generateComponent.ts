@@ -13,16 +13,16 @@ export const generateComponent = ({ pageName, rootDir, config }: CommonGenerateP
 
   //2. component 파일 생성
   const componentFileName = 'index'; // todo config 통해서 변동 가능하도록.
-  const componentFilePath = `${componentFolderPath}/${componentFileName}.tsx`;
+  const componentFilePath = path.join(componentFolderPath, `${componentFileName}.tsx`);
   const componentContent = constants.componentContent.getBaseComponentContent(pageName, config.alias!);
   generateFile(componentFilePath, componentContent);
 
   //3. hooks 폴더 생성
-  const hooksFolderPath = `${componentFolderPath}/hooks`;
+  const hooksFolderPath = path.join(componentFolderPath, 'hooks');
   generateFolder(hooksFolderPath);
 
   //4. styles 파일 생성
-  const styleFilePath = `${componentFolderPath}/${componentFileName}.styles.ts`;
+  const styleFilePath = path.join(componentFolderPath, `${componentFileName}.styles.ts`);
   const styleContent = constants.styleContent.getBaseStyleContent();
   generateFile(styleFilePath, styleContent);
 };

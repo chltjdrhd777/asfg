@@ -1,6 +1,10 @@
 import { getCommands } from '../utils/getCommands';
 
-export type Flag = '-h' | '-help' | '-net';
+export type HelpFlg = '-h' | '-help';
+export type NetworkFlag = '-net';
+export type APIFlag = '-api';
+
+export type Flag = HelpFlg | NetworkFlag | APIFlag;
 export type GetCommandsReturnType = ReturnType<typeof getCommands>;
 
 export interface ASFGConfig {

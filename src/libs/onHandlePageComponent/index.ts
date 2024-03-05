@@ -1,4 +1,4 @@
-import { ASFGConfig, DefaultCommonParams, GetCommandsReturnType } from '../../types';
+import { DefaultCommonParams } from '../../types';
 import { utils } from '../../utils';
 import { generateComponent } from './generateComponent';
 import { generateContextState } from './generateContextState';
