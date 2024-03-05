@@ -4,6 +4,7 @@ import { guideText } from './guideText';
 import { pageContent } from './pageContent';
 import { defaultASFGConfig } from './defaultASFGConfig';
 import { networkContent } from './networkContent';
+import { styleContent } from './styleContent';
 
 export const constants = {
   componentContent,
@@ -12,4 +13,5 @@ export const constants = {
   pageContent,
   defaultASFGConfig,
   networkContent,
+  styleContent,
 };

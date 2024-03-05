@@ -23,5 +23,6 @@ export const generateComponent = ({ pageName, rootDir, config }: CommonGenerateP
 
   //4. styles 파일 생성
   const styleFilePath = `${componentFolderPath}/${componentFileName}.styles.ts`;
-  generateFile(styleFilePath, '');
+  const styleContent = constants.styleContent.getBaseStyleContent();
+  generateFile(styleFilePath, styleContent);
 };
