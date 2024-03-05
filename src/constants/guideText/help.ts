@@ -1,9 +1,15 @@
-export const help = `
-| Command    | Description                 |
-|------------|-----------------------------|
-| -h         | Display help information    |
-| list       | List items                  |
-| create     | Create a new item           |
-| delete     | Delete an existing item     |
-| update     | Update an existing item     |
-`;
+const getHelpTableStructure = <Flag extends string, Description extends string>(structureData: [Flag, Description]) => {
+  const [flag, description] = structureData;
+
+  return {
+    index: '',
+    flag,
+    description,
+  };
+};
+
+export const helpTableStructure = [
+  getHelpTableStructure(['-h, -help', 'show help']),
+  getHelpTableStructure(['-net', 'generate base network folder structure with axios client (singleton)']),
+  getHelpTableStructure(['-api', 'generate base query hook folder structure with react-query']),
+];

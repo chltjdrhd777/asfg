@@ -1,0 +1,72 @@
+name: Auto-Issue-and-PR
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create-issue-and-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get commit message
+        id: commit_message
+        run: |
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
+          COMMIT_PREFIX=$(echo "$COMMIT_MESSAGE" | grep -oE "^(fix|feat):" || true)
+          echo "COMMIT_MESSAGE=${COMMIT_MESSAGE}" >> $GITHUB_STATE
+          echo "COMMIT_PREFIX=${COMMIT_PREFIX}" >> $GITHUB_STATE
+
+      - name: Set emoji based on prefix
+        id: set_emoji
+        run: |
+          COMMIT_PREFIX="${COMMIT_PREFIX}"
+
+          if [ -n "$COMMIT_PREFIX" ]; then
+            case $COMMIT_PREFIX in
+              fix:)
+                echo "EMOJI=🐛" >> $GITHUB_STATE
+                ;;
+              feat:)
+                echo "EMOJI=✨" >> $GITHUB_STATE
+                ;;
+            esac
+          else
+            echo "EMOJI=" >> $GITHUB_STATE
+          fi
+
+      - name: Create issue
+        id: create_issue
+        run: |
+          COMMIT_MESSAGE="${COMMIT_MESSAGE}"
+          EMOJI="${EMOJI}"
+
+          ISSUE_TITLE="${EMOJI} ${COMMIT_MESSAGE}"
+          ISSUE_BODY=""
+
+          # Create the issue and capture the issue number
+          ISSUE_NUMBER=$(curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d "{\"title\":\"$ISSUE_TITLE\",\"body\":\"$ISSUE_BODY\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/issues" | jq -r '.number')
+
+          echo "ISSUE_NUMBER=${ISSUE_NUMBER}" >> $GITHUB_STATE
+
+      - name: Create pull request
+        run: |
+          COMMIT_MESSAGE="${COMMIT_MESSAGE}"
+          EMOJI="${EMOJI}"
+          ISSUE_NUMBER="${ISSUE_NUMBER}"
+
+          PR_TITLE="${EMOJI} ${COMMIT_MESSAGE}"
+          PR_BODY="close #${ISSUE_NUMBER}."
+
+          # Create the pull request
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"develop\",\"base\":\"main\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls"
