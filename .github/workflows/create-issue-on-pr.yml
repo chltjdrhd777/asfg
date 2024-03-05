@@ -1,0 +1,76 @@
+name: Auto-Issue-and-PR
+
+on:
+  push:
+    branches:
+      - develop
+
+jobs:
+  create-issue-and-pr:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get commit message
+        id: commit_message
+        run: |
+          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
+          COMMIT_PREFIX=$(echo "$COMMIT_MESSAGE" | grep -oE "^(fix|feat):" || true)
+          echo "::set-output name=message::${COMMIT_MESSAGE}"
+          echo "::set-output name=prefix::${COMMIT_PREFIX}"
+
+      - name: Set emoji based on prefix
+        id: set_emoji
+        run: |
+          COMMIT_PREFIX="${{ steps.commit_info.outputs.prefix }}"
+
+          if [ -n "$COMMIT_PREFIX" ]; then
+            case $COMMIT_PREFIX in
+              fix:)
+                echo "::set-output name=emoji::🐛"
+                ;;
+              feat:)
+                echo "::set-output name=emoji::✨"
+                ;;
+              # Add more cases as needed
+            esac
+          else
+            echo "::set-output name=emoji::"
+          fi
+
+      - name: Create issue
+        id: create_issue
+        run: |
+          COMMIT_MESSAGE="${{ steps.commit_info.outputs.message }}"
+          EMOJI="${{ steps.set_emoji.outputs.emoji }}"
+
+          ISSUE_TITLE="${EMOJI} ${COMMIT_MESSAGE}"
+          ISSUE_BODY=""
+
+          ISSUE_NUMBER=$(curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d "{\"title\":\"$ISSUE_TITLE\",\"body\":\"$ISSUE_BODY\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/issues" | jq -r '.number')
+
+            echo "::set-output name=issue_number::${ISSUE_NUMBER}"
+
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d "{\"title\":\"$ISSUE_TITLE\",\"body\":\"$ISSUE_BODY\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/issues"
+
+      - name: Create pull request
+        run: |
+          COMMIT_MESSAGE="${{ steps.commit_message.outputs.message }}"
+          EMOJI="${{ steps.set_emoji.outputs.emoji }}"
+          ISSUE_NUMBER="${{ steps.create_issue.outputs.issue_number }}"
+
+          PR_TITLE="${EMOJI} ${COMMIT_MESSAGE}"
+          PR_BODY="close #${ISSUE_NUMBER}."
+
+          curl -X POST \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            -d "{\"title\":\"$PR_TITLE\",\"body\":\"$PR_BODY\",\"head\":\"develop\",\"base\":\"main\"}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls"
