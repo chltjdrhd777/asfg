@@ -57,13 +57,12 @@ jobs:
             "https://api.github.com/repos/${{ github.repository }}/issues" | jq -r '.number')
 
           echo "ISSUE_NUMBER=${ISSUE_NUMBER}" >> $GITHUB_OUTPUT
-          echo "result issue number is ${ISSUE_NUMBER}"
 
       - name: Create pull request
         run: |
           COMMIT_MESSAGE="${{steps.commit_message.outputs.COMMIT_MESSAGE}}"
           EMOJI="${{steps.set_emoji.outputs.EMOJI}}"
-          ISSUE_NUMBER="${{steps.set_emoji.outputs.EMOJI}}"
+          ISSUE_NUMBER="${{steps.create_issue.outputs.ISSUE_NUMBER}}"
 
           PR_TITLE="${EMOJI} ${COMMIT_MESSAGE}"
           PR_BODY="close #${ISSUE_NUMBER}."
