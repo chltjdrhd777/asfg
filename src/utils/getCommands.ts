@@ -8,18 +8,20 @@ export interface GetCommandsParams {
 }
 
 export const getCommands = ({ input = '' }: GetCommandsParams) => {
-  const split = input.split(' ');
+  const split = input.split(' ').map((t) => t.replace(/\s/gi, ''));
 
-  const resourceName = split.filter((t) => !t.startsWith('-'))[0];
-  const flag = split.find((t) => t.startsWith('-')) as Flag | undefined;
+  const commandGroupWithoutFlag = split.filter((t) => !t.startsWith('-'));
+  const resourceName = String(commandGroupWithoutFlag[0]);
+  const flagIndex = split.findIndex((t) => t.startsWith('-'));
 
-  if (!resourceName && !flag) {
+  if (!resourceName && flagIndex === -1) {
     console.log(guideText.noResourceName);
     return process.exit();
   }
 
   return {
+    commandGroupWithoutFlag,
     resourceName,
-    flag,
+    flag: split[flagIndex] as Flag | undefined,
   };
 };

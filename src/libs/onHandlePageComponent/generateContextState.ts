@@ -14,7 +14,7 @@ export const generateContextState = ({ pageName, rootDir }: CommonGenerateParams
 
   //2. context state file 생성
   const contextStateFileName = `use${pageName}ContextState`; // todo config 통해서 변동 가능하도록.
-  const contextStateFilePath = `${contextStateFolderPath}/${contextStateFileName}.ts`;
+  const contextStateFilePath = path.join(contextStateFolderPath, `${contextStateFileName}.ts`);
   const contextStateContent = constants.contextStateContent.getBaseContextStateContent(pageName);
   generateFile(contextStateFilePath, contextStateContent);
 };

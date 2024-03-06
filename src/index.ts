@@ -17,7 +17,7 @@ export function generateNextFolderStructure() {
     output: process.stdout,
   });
 
-  rl.question('folder name : ', (input) => {
+  rl.question('structure name : ', (input) => {
     const commands = utils.getCommands({ input, rl });
 
     const ASFGConfig = undefined; //todo config 파일 읽어오도록 수정

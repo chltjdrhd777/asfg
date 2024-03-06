@@ -5,6 +5,7 @@ import { pageContent } from './pageContent';
 import { defaultASFGConfig } from './defaultASFGConfig';
 import { networkContent } from './networkContent';
 import { styleContent } from './styleContent';
+import { exampleAPIContent } from './exampleAPIContent';
 
 export const constants = {
   componentContent,
@@ -14,4 +15,5 @@ export const constants = {
   defaultASFGConfig,
   networkContent,
   styleContent,
+  exampleAPIContent,
 };
