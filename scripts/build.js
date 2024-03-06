@@ -1,7 +1,7 @@
 const { execSync } = require('child_process');
 const fs = require('fs');
 
-execSync('tsc');
+execSync('tsc && tsc-alias');
 
 const jsFilePath = './dist/index.js';
 const shebang = '#!/usr/bin/env node\n';

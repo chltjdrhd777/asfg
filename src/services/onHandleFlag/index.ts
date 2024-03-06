@@ -1,9 +1,10 @@
-import { DefaultCommonParams } from '../../types';
+import { DefaultParams } from '../../types';
 import { apiFlag } from './apiFlag';
+import { cFlag } from './cFlag';
 import { hFlag } from './hFlag';
 import { netFlag } from './netFlag';
 
-export interface OnHanldeFlagParams extends DefaultCommonParams {}
+export interface OnHanldeFlagParams extends DefaultParams {}
 export interface CommonFlagHandlerParams extends OnHanldeFlagParams {
   networkFolderPath: string;
 }
@@ -25,4 +26,5 @@ export const onHandleFlag = (onHanldeFlagParams: OnHanldeFlagParams) => {
   if (flag === '-h' || flag === '-help') hFlag(flag);
   if (flag === '-net') netFlag(commonFlagHandlerParams);
   if (flag === '-api') apiFlag(commonFlagHandlerParams);
+  if (flag === '-c' || flag === '-custom') cFlag(commonFlagHandlerParams);
 };
