@@ -1,11 +1,11 @@
-import { DefaultCommonParams } from '../../types';
+import { DefaultParams } from '../../types';
 import { utils } from '../../utils';
 import { generateComponent } from './generateComponent';
 import { generateContextState } from './generateContextState';
 import { generateCreatecontext } from './generateCreatecontext';
 import { generatePage } from './generatePage';
 
-export interface OnHandlePageComponentParams extends DefaultCommonParams {}
+export interface OnHandlePageComponentParams extends DefaultParams {}
 export interface CommonGenerateParams extends OnHandlePageComponentParams {
   pageName: string;
 }

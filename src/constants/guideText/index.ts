@@ -1,11 +1,11 @@
 import { helpTableStructure } from './help';
 import { aschiiTitle } from './aschiiTitle';
 import { introduction } from './introduction';
-import { noResourceName } from './warning';
+import { warning } from './warning';
 
 export const guideText = {
   helpTableStructure,
   aschiiTitle,
   introduction,
-  noResourceName,
+  warning,
 };

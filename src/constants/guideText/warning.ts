@@ -2,4 +2,8 @@ const noResourceName = `
 no resource name. please enter again.
 `;
 
-export { noResourceName };
+const noAgreementAnswer = `
+your answer is not appropriate. please start again. 
+`;
+
+export const warning = { noResourceName, noAgreementAnswer };

@@ -47,7 +47,7 @@ Next.js 프로젝트를 진행 중에, Context API를 기반으로 하는 디자
       <td>전역적으로 사용되는 고정 상수 폴더</td>
     </tr>
     <tr>
-      <td style="color: #FFCA1A;">libs</td>
+      <td style="color: #FFCA1A;">services</td>
       <td>프로젝트 공통으로 사용되는 특정 모듈 코드베이스 저장 폴더 </td>
     </tr>
     <tr>
@@ -57,6 +57,10 @@ Next.js 프로젝트를 진행 중에, Context API를 기반으로 하는 디자
     <tr>
       <td style="color: #FFCA1A;">utils</td>
       <td>재사용 가능성 있는 독립적인 기능 함수들을 저장하는 폴더</td>
+    </tr>
+     <tr>
+      <td style="color: #FFCA1A;">packages</td>
+      <td>재사용 가능한 관심사들끼리 분리한 클래스의 저장 폴더</td>
     </tr>
   </tbody>
 </table>
@@ -74,6 +78,7 @@ Container가 관리하는 context는 훅으로 분리하여 관리한다. (타�
 // 저장하는 위치는 contexts => 페이지명 폴더 => `use${페이지명}ContextState` 으로 생성한다.
 
 // contexts/Building/useBuildingContextState.ts
+
 import * as React from 'react';
 
 export default function useBuildingContextState() {
@@ -100,6 +105,7 @@ Container 컴포넌트에서 createContext를 이용해 필요한 context를 전
 // b) Provider value
 
 // components/Building/index.tsx
+
 import * as React from 'react';
 
 import { createContext } from '@/contexts';

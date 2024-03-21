@@ -15,7 +15,7 @@ export const generateComponent = ({ pageName, rootDir, config }: CommonGenerateP
   const componentFileName = 'index'; // todo config 통해서 변동 가능하도록.
   const componentFilePath = path.join(componentFolderPath, `${componentFileName}.tsx`);
   const componentContent = constants.componentContent.getBaseComponentContent(pageName, config.alias!);
-  generateFile(componentFilePath, componentContent);
+  generateFile(componentFilePath, componentContent, `create component : ${componentFilePath}`);
 
   //3. hooks 폴더 생성
   const hooksFolderPath = path.join(componentFolderPath, 'hooks');

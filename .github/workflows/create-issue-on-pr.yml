@@ -16,7 +16,7 @@ jobs:
       - name: Get commit message
         id: commit_message
         run: |
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
+          COMMIT_MESSAGE=$(git log --format=%s -n 1 ${{ github.sha }})
           COMMIT_PREFIX=$(echo "$COMMIT_MESSAGE" | grep -oE "^(fix|feat):" || true)
           echo "COMMIT_MESSAGE=${COMMIT_MESSAGE}" >> $GITHUB_OUTPUT
           echo "COMMIT_PREFIX=${COMMIT_PREFIX}" >> $GITHUB_OUTPUT

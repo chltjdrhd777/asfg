@@ -25,5 +25,5 @@ export const generateExampleAPI = (createExampleQueryParams: CreateExampleQueryP
   const apiFileName = utils.getNaming(`${String(commands.commandGroupWithoutFlag[1])}API.ts`);
   const apiFilePath = path.join(apiFolderPath, `${apiFileName}.ts`);
   const apiFileContent = constants.exampleAPIContent.getBaseExampleAPIContent();
-  generateFile(apiFilePath, apiFileContent);
+  generateFile(apiFilePath, apiFileContent, `create API : ${apiFilePath}`);
 };

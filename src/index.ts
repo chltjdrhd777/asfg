@@ -1,48 +1,50 @@
 import readline from 'readline';
 
 import { utils } from './utils';
-import { libs } from './libs';
-import { ASFGConfig, DefaultCommonParams } from './types';
+import { libs } from './services';
+import { ASFGConfig, DefaultParams } from './types';
 import { constants } from './constants';
+import { pakages } from './packages';
 
-export function generateNextFolderStructure() {
+export function generateStructure() {
   // 초기 -h나 -help 입력 시, help text 콘솔에 표출
   libs.onHelpFlag();
 
   // 그 이외의 로직 처리 시작
   utils.consoleIntro();
 
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout,
-  });
+  const rl = pakages.ReadlineControl.getReadlineInstance();
 
-  rl.question('structure name : ', (input) => {
-    const commands = utils.getCommands({ input, rl });
+  rl.question('action : ', (input) => {
+    const defaultParams = getDefaultParams({ input, rl });
 
-    const ASFGConfig = undefined; //todo config 파일 읽어오도록 수정
-    const config: ASFGConfig = ASFGConfig ?? constants.defaultASFGConfig; //todo config 파일 읽어오도록 한다.
-
-    const rootDir = utils.getRootDirectory() ?? process.cwd();
-
-    const defaultCommonParams: DefaultCommonParams = {
-      commands,
-      config,
-      rootDir,
-    };
-
-    if (commands.flag) {
-      libs.onHandleFlag(defaultCommonParams);
+    if (defaultParams.commands.flag) {
+      // flag 같이 입력되었을 시 로직 처리
+      libs.onHandleFlag(defaultParams);
     } else {
-      libs.onHandlePageComponent(defaultCommonParams);
+      // flag가 없을 경우의 로직 처리
+      libs.onHandlePageComponent(defaultParams);
     }
-
-    rl.close();
-  });
-
-  rl.on('close', () => {
-    process.exit();
   });
 }
 
-generateNextFolderStructure();
+generateStructure();
+
+/**
+ * @helpers
+ */
+
+const getDefaultParams = ({ input, rl }: { input: string; rl?: readline.Interface }) => {
+  const commands = utils.getCommands({ input, rl });
+
+  const ASFGConfig = undefined; //todo config 파일 읽어오도록 수정
+  const config: ASFGConfig = ASFGConfig ?? constants.defaultASFGConfig; //todo config 파일 읽어오도록 한다.
+
+  const rootDir = utils.getRootDirectory() ?? process.cwd();
+
+  return {
+    commands,
+    config,
+    rootDir,
+  } as DefaultParams;
+};
