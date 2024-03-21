@@ -20,10 +20,10 @@ export const generateNetwork = ({ rootDir, networkFolderPath }: CreateNetworkPar
   //4. baseConfig.ts 파일 생성
   const baseConfigFilePath = path.join(apiClientFolderPath, 'baseConfig.ts');
   const baseConfigContent = constants.networkContent.baseConfigContent;
-  generateFile(baseConfigFilePath, baseConfigContent);
+  generateFile(baseConfigFilePath, baseConfigContent, `create baseConfig : ${baseConfigFilePath}`);
 
   //4. index.ts(instance 초기화) 생성
   const clientIndexFilePath = path.join(apiClientFolderPath, 'index.ts');
   const clientIndexContent = constants.networkContent.clientIndexContent;
-  generateFile(clientIndexFilePath, clientIndexContent);
+  generateFile(clientIndexFilePath, clientIndexContent, `create clientIndex : ${clientIndexFilePath}`);
 };

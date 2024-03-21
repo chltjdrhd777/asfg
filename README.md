@@ -78,6 +78,7 @@ Container가 관리하는 context는 훅으로 분리하여 관리한다. (타�
 // 저장하는 위치는 contexts => 페이지명 폴더 => `use${페이지명}ContextState` 으로 생성한다.
 
 // contexts/Building/useBuildingContextState.ts
+
 import * as React from 'react';
 
 export default function useBuildingContextState() {
@@ -104,6 +105,7 @@ Container 컴포넌트에서 createContext를 이용해 필요한 context를 전
 // b) Provider value
 
 // components/Building/index.tsx
+
 import * as React from 'react';
 
 import { createContext } from '@/contexts';

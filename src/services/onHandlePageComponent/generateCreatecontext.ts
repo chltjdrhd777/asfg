@@ -15,5 +15,5 @@ export const generateCreatecontext = ({ rootDir }: CommonGenerateParams) => {
   //2. create context 파일 생성.
   const createContextFilePath = path.join(contextsFolderPath, `createContext.tsx`);
   const createContextContent = constants.contextStateContent.getBaseCreateContext();
-  generateFile(createContextFilePath, createContextContent);
+  generateFile(createContextFilePath, createContextContent, `create context : ${createContextFilePath}`);
 };
