@@ -6,8 +6,8 @@ import { generateFolder } from 'services/generateFolder';
 export const generateConfigFolder = (configFolderPath: string) => {
   const rl = pakages.ReadlineControl.getReadlineInstance();
 
-  rl.question('There is no asfg.config folder. Do you want to create this? (y/yes)', (answer) => {
-    if (answer.toLowerCase() === 'y' || answer.toLowerCase() === 'yes') {
+  rl.question('There is no asfg.config folder. Do you want to create this? (y/yes) ', (answer) => {
+    if (answer.toLowerCase().trim() === 'y' || answer.toLowerCase().trim() === 'yes') {
       // 1. config 폴더 생성
       generateFolder(configFolderPath);
 
