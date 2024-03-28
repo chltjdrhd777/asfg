@@ -14,7 +14,7 @@ export const helpTableStructure = [
   getHelpTableStructure([
     '-api',
     'folderName fileName -api',
-    'generate base query hook folder structure with react-query',
+    'generate base query hook folder structure with react-query.',
   ]),
   getHelpTableStructure(['-c, -custom', '-c', 'generate your custom structure based on <asfg.config>']),
 ];
