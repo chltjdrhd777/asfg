@@ -64,6 +64,8 @@ jobs:
           EMOJI="${{steps.set_emoji.outputs.EMOJI}}"
           ISSUE_NUMBER="${{steps.create_issue.outputs.ISSUE_NUMBER}}"
 
+          echo "ISSUE_NUMBER FORMAT CHECK : ${ISSUE_NUMBER}"
+
           PR_TITLE="${EMOJI} ${COMMIT_MESSAGE}"
           PR_BODY="close #${ISSUE_NUMBER}."
 
