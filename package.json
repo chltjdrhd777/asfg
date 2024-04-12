@@ -1,6 +1,6 @@
 {
   "name": "asfg",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Auto Folder Structure Generator",
   "main": "./dist/index.js",
   "scripts": {
