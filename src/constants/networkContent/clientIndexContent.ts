@@ -1,60 +1,50 @@
 export const clientIndexContent = `
 import axios, {
-  AxiosInstance,
-  AxiosResponse,
-  CreateAxiosDefaults,
-  InternalAxiosRequestConfig,
+	AxiosInstance,
+	AxiosResponse,
+	CreateAxiosDefaults,
+	InternalAxiosRequestConfig,
 } from 'axios';
 import {
-  baseCreateAxiosDefaults,
-  baseOnRequestFullfilled,
-  baseOnRequestRejected,
-  baseOnResponseFullfiled,
-  baseOnResponseRejected,
+	baseCreateAxiosDefaults,
+	baseOnRequestFullfilled,
+	baseOnRequestRejected,
+	baseOnResponseFullfiled,
+	baseOnResponseRejected,
 } from './baseConfig';
 
 interface GetInstanceParams {
-  createAxiosDefaults?: CreateAxiosDefaults;
+	createAxiosDefaults?: CreateAxiosDefaults;
 
-  onRequestFullfilled?: (config: InternalAxiosRequestConfig<any>) => any;
-  onRequestRejected?: (error: any) => any;
-
-  onResponseFullfilled?: (response: AxiosResponse<any, any>) => any;
-  onResponseRejected?: (error: any) => any;
+	onRequestFullfilled?: (config: InternalAxiosRequestConfig) => InternalAxiosRequestConfig;
+	onRequestRejected?: (error: Error) => void | Promise<never>;
+	onResponseFullfilled?: (response: AxiosResponse) => AxiosResponse;
+	onResponseRejected?: (error: Error) => void | Promise<never>;
 }
 
-class Axios {
-  static instance: AxiosInstance | null = null;
+class AxiosService {
+	private static instance: AxiosInstance | null = null;
 
-  static getInstance(getInstanceParams?: GetInstanceParams) {
-    const {
-      createAxiosDefaults,
-      onRequestFullfilled,
-      onRequestRejected,
-      onResponseFullfilled,
-      onResponseRejected,
-    } = getInstanceParams ?? {};
+	static getInstance(getInstanceParams?: GetInstanceParams) {
+		const {
+			createAxiosDefaults = baseCreateAxiosDefaults,
+			onRequestFullfilled = baseOnRequestFullfilled,
+			onRequestRejected = baseOnRequestRejected,
+			onResponseFullfilled = baseOnResponseFullfiled,
+			onResponseRejected = baseOnResponseRejected,
+		} = getInstanceParams ?? {};
 
-    if (!this.instance) {
-      this.instance = axios.create(createAxiosDefaults ?? baseCreateAxiosDefaults);
+		if (!AxiosService.instance) {
+			AxiosService.instance = axios.create(createAxiosDefaults);
 
-      this.instance.interceptors.request.use(
-        onRequestFullfilled ?? baseOnRequestFullfilled,
-        onRequestRejected ?? baseOnRequestRejected
-      );
+			AxiosService.instance.interceptors.request.use(onRequestFullfilled, onRequestRejected);
+			AxiosService.instance.interceptors.response.use(onResponseFullfilled, onResponseRejected);
+		}
 
-      this.instance.interceptors.response.use(
-        onResponseFullfilled ?? baseOnResponseFullfiled,
-        onResponseRejected ?? baseOnResponseRejected
-      );
-
-      return this.instance;
-    } else {
-      return this.instance;
-    }
-  }
+		return AxiosService.instance;
+	}
 }
 
-export const axiosInstance = Axios.getInstance();
-export const getAxiosInstance = Axios.getInstance;
+export const axiosInstance = AxiosService.getInstance();
+export const getAxiosInstance = AxiosService.getInstance;
 `;
